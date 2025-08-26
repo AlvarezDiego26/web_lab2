@@ -1,31 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contáctenos - Mi Empresa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto - Mi Empresa</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Contáctenos</h1>
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="nosotros.html">Nosotros</a> |
-    <a href="servicios.html">Nuestros Servicios</a> |
-    <a href="clientes.html">Catálogo de Clientes</a> |
-    <a href="contacto.html">Contáctenos</a>
-  </nav>
+  <header class="header" id="site-header">
+    <div class="container">
+      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/servicios.html">Nuestros Servicios</a>
+        <a href="/clientes.html">Catálogo de Clientes</a>
+        <a href="/contacto.html">Contáctenos</a>
+      </nav>
+    </div>
+  </header>
 
-  <form action="confirmacion.html" method="GET">
-    <label for="nombre">Nombre:</label><br />
-    <input type="text" id="nombre" name="nombre" required /><br /><br />
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <h2>Contáctenos</h2>
+        <form id="contactForm" class="form">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" required />
 
-    <label for="email">Email:</label><br />
-    <input type="email" id="email" name="email" required /><br /><br />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
 
-    <label for="mensaje">Mensaje:</label><br />
-    <textarea id="mensaje" name="mensaje" required></textarea><br /><br />
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
 
-    <button type="submit">Enviar</button>
-  </form>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Mi Empresa.</p>
+  </footer>
+
+  <script>
+    (function(){
+      const header = document.getElementById('site-header');
+      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Enviar formulario con fetch
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const data = {
+          nombre: form.nombre.value,
+          email: form.email.value,
+          mensaje: form.mensaje.value
+        };
+
+        fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(r => r.json())
+        .then(resp => {
+          if (resp.ok) {
+            // Redirigimos a confirmacion con el nombre en query string
+            const nombreEncoded = encodeURIComponent(data.nombre || '');
+            window.location.href = '/confirmacion.html?nombre=' + nombreEncoded;
+          } else {
+            alert('Ocurrió un error. Intente más tarde.');
+          }
+        })
+        .catch(() => {
+          alert('No se pudo enviar el mensaje. Revise su conexión.');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,33 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Servicios - Mi Empresa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Nuestros Servicios</h1>
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="nosotros.html">Nosotros</a> |
-    <a href="servicios.html">Nuestros Servicios</a> |
-    <a href="clientes.html">Catálogo de Clientes</a> |
-    <a href="contacto.html">Contáctenos</a>
-  </nav>
+  <header class="header" id="site-header">
+    <div class="container">
+      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/servicios.html">Nuestros Servicios</a>
+        <a href="/clientes.html">Catálogo de Clientes</a>
+        <a href="/contacto.html">Contáctenos</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="galeria">
-    <div class="servicio">
-      <img src="img/servicio1.jpg" alt="Servicio 1" />
-      <p>Servicio 1 - Descripción breve del servicio.</p>
-    </div>
-    <div class="servicio">
-      <img src="img/servicio2.jpg" alt="Servicio 2" />
-      <p>Servicio 2 - Descripción breve del servicio.</p>
-    </div>
-    <div class="servicio">
-      <img src="img/servicio3.jpg" alt="Servicio 3" />
-      <p>Servicio 3 - Descripción breve del servicio.</p>
-    </div>
-  </div>
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <h2>Nuestros Servicios</h2>
+        <ul>
+          <li>Servicio 1 - Descripción breve.</li>
+          <li>Servicio 2 - Descripción breve.</li>
+          <li>Servicio 3 - Descripción breve.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Mi Empresa.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const header = document.getElementById('site-header');
+      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>

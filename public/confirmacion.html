@@ -1,13 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Confirmación - Mi Empresa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Solicitud recibida</h1>
-  <p>Muy pronto nos pondremos en contacto contigo. ¡Gracias!</p>
-  <a href="index.html">Volver al inicio</a>
+  <header class="header" id="site-header">
+    <div class="container">
+      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/servicios.html">Nuestros Servicios</a>
+        <a href="/clientes.html">Catálogo de Clientes</a>
+        <a href="/contacto.html">Contáctenos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <h2>Mensaje enviado</h2>
+        <p id="msj">Gracias por contactarnos. En breve nos comunicaremos contigo.</p>
+        <p><a href="/">Volver al inicio</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Mi Empresa.</p>
+  </footer>
+
+  <script>
+    (function(){
+      const header = document.getElementById('site-header');
+      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mostrar nombre si viene por query string
+      const params = new URLSearchParams(window.location.search);
+      const nombre = params.get('nombre');
+      if (nombre) {
+        const texto = document.getElementById('msj');
+        texto.textContent = `Gracias, ${decodeURIComponent(nombre)}. Hemos recibido tu mensaje y nos comunicaremos pronto.`;
+      }
+    })();
+  </script>
 </body>
 </html>

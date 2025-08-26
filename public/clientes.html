@@ -1,24 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Catálogo de Clientes - Mi Empresa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clientes - Mi Empresa</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Catálogo de Clientes</h1>
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="nosotros.html">Nosotros</a> |
-    <a href="servicios.html">Nuestros Servicios</a> |
-    <a href="clientes.html">Catálogo de Clientes</a> |
-    <a href="contacto.html">Contáctenos</a>
-  </nav>
+  <header class="header" id="site-header">
+    <div class="container">
+      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/servicios.html">Nuestros Servicios</a>
+        <a href="/clientes.html">Catálogo de Clientes</a>
+        <a href="/contacto.html">Contáctenos</a>
+      </nav>
+    </div>
+  </header>
 
-  <ul>
-    <li>Cliente 1</li>
-    <li>Cliente 2</li>
-    <li>Cliente 3</li>
-  </ul>
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <h2>Catálogo de Clientes</h2>
+        <p>Listado y casos de éxito con nuestros clientes destacados.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Mi Empresa.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const header = document.getElementById('site-header');
+      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>

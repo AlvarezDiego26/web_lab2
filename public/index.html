@@ -1,19 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Inicio - Mi Empresa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Bienvenido a Mi Empresa</h1>
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="nosotros.html">Nosotros</a> |
-    <a href="servicios.html">Nuestros Servicios</a> |
-    <a href="clientes.html">Catálogo de Clientes</a> |
-    <a href="contacto.html">Contáctenos</a>
-  </nav>
-  <p>Esta es la página principal de nuestra empresa.</p>
+  <header class="header" id="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="/"><img src="/img/logo.png" alt="Logo" /></a>
+      </div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/servicios.html">Nuestros Servicios</a>
+        <a href="/clientes.html">Catálogo de Clientes</a>
+        <a href="/contacto.html">Contáctenos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="overlay"></div> <!-- capa oscura transparente -->
+    <div class="inner">
+      <h1>Bienvenidos a Mi Empresa</h1>
+      <p>Soluciones profesionales a tu medida. Calidad, compromiso y experiencia.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>¿Por qué elegirnos?</h2>
+      <p>Ofrecemos servicios personalizados con enfoque en resultados. Nuestro equipo está preparado para atender proyectos de distinta escala.</p>
+    </div>
+  </section>
+</main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Mi Empresa. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Header que cambia de fondo al hacer scroll
+    (function() {
+      const header = document.getElementById('site-header');
+      const onScroll = () => {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+
+      // año en el footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
