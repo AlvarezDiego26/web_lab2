@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: #004080;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #0066cc;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.galeria {
+  display: flex;
+  gap: 20px;
+}
+
+.servicio {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 30%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.servicio img {
+  max-width: 100%;
+  border-radius: 5px;
+}
