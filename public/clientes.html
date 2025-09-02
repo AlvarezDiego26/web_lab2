@@ -4,43 +4,49 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clientes - Mi Empresa</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="header" id="site-header">
-    <div class="container">
-      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
-      <nav class="nav">
-        <a href="/">Inicio</a>
-        <a href="/nosotros.html">Nosotros</a>
-        <a href="/servicios.html">Nuestros Servicios</a>
-        <a href="/clientes.html">Catálogo de Clientes</a>
-        <a href="/contacto.html">Contáctenos</a>
-      </nav>
+
+<header class="header" id="site-header">
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img src="img/logo.png" alt="Logo de Mi Empresa" /></a>
     </div>
-  </header>
+    <nav class="nav">
+      <a href="/">Inicio</a>
+      <a href="/nosotros.html">Nosotros</a>
+      <a href="/servicios.html">Nuestros Servicios</a>
+      <a href="/clientes.html" class="active">Catálogo de Clientes</a>
+      <a href="/contacto.html">Contáctenos</a>
+    </nav>
+  </div>
+</header>
 
-  <main style="padding-top: 100px;">
-    <section class="section">
-      <div class="container">
-        <h2>Catálogo de Clientes</h2>
-        <p>Listado y casos de éxito con nuestros clientes destacados.</p>
-      </div>
-    </section>
-  </main>
+<main>
+  <section class="hero">
+    <div class="hero-carousel">
+      <img src="img/hero1.jpg" class="active" alt="Hero Clientes">
+    </div>
+    <div class="overlay"></div>
+    <div class="inner">
+      <h1>Nuestros Clientes</h1>
+      <p>Confían en nosotros empresas líderes en diferentes sectores.</p>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Mi Empresa.</p>
-  </footer>
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">Casos de Éxito</h2>
+      <p>Hemos trabajado con compañías de distintos rubros, ayudándoles a crecer con soluciones digitales innovadoras.</p>
+    </div>
+  </section>
+</main>
 
-  <script>
-    (function() {
-      const header = document.getElementById('site-header');
-      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+<footer class="footer">
+  <p>© <span id="year"></span> Mi Empresa. Todos los derechos reservados.</p>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

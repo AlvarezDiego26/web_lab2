@@ -4,47 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Servicios - Mi Empresa</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="header" id="site-header">
-    <div class="container">
-      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
-      <nav class="nav">
-        <a href="/">Inicio</a>
-        <a href="/nosotros.html">Nosotros</a>
-        <a href="/servicios.html">Nuestros Servicios</a>
-        <a href="/clientes.html">Catálogo de Clientes</a>
-        <a href="/contacto.html">Contáctenos</a>
-      </nav>
+
+<header class="header" id="site-header">
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img src="img/logo.png" alt="Logo de Mi Empresa" /></a>
     </div>
-  </header>
+    <nav class="nav">
+      <a href="/">Inicio</a>
+      <a href="/nosotros.html">Nosotros</a>
+      <a href="/servicios.html" class="active">Nuestros Servicios</a>
+      <a href="/clientes.html">Catálogo de Clientes</a>
+      <a href="/contacto.html">Contáctenos</a>
+    </nav>
+  </div>
+</header>
 
-  <main style="padding-top: 100px;">
-    <section class="section">
-      <div class="container">
-        <h2>Nuestros Servicios</h2>
-        <ul>
-          <li>Servicio 1 - Descripción breve.</li>
-          <li>Servicio 2 - Descripción breve.</li>
-          <li>Servicio 3 - Descripción breve.</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+<main>
+  <section class="hero">
+    <div class="hero-carousel">
+      <img src="img/hero3.jpg" class="active" alt="Hero Servicios">
+    </div>
+    <div class="overlay"></div>
+    <div class="inner">
+      <h1>Nuestros Servicios</h1>
+      <p>Soluciones digitales, diseño y tecnología para tu negocio.</p>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Mi Empresa.</p>
-  </footer>
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">Lo que ofrecemos</h2>
+      <ul>
+        <li>🌐 Desarrollo web</li>
+        <li>📱 Aplicaciones móviles</li>
+        <li>🛒 Tiendas online</li>
+        <li>🔧 Soporte técnico</li>
+      </ul>
+    </div>
+  </section>
+</main>
 
-  <script>
-    (function() {
-      const header = document.getElementById('site-header');
-      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+<footer class="footer">
+  <p>© <span id="year"></span> Mi Empresa. Todos los derechos reservados.</p>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
 
 const port = 4000;
 
@@ -17,17 +18,39 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   console.log(`Solicitud recibida para: ${req.url}`);
 
+  // Manejar POST del formulario
+  if (req.method === 'POST' && req.url === '/contacto') {
+    let body = '';
+
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+
+    req.on('end', () => {
+      const formData = querystring.parse(body);
+
+      console.log('📩 Nuevo mensaje recibido:');
+      console.log(formData);
+
+      // Redirige a la página de confirmación
+      res.writeHead(302, { 'Location': '/confirmacion.html' });
+      res.end();
+    });
+
+    return;
+  }
+
   // Redirigir '/' a '/index.html'
   let fileUrl = req.url === '/' ? '/index.html' : req.url;
 
-  // Evitar acceso a favicon.ico
+  // Evitar favicon.ico
   if (fileUrl === '/favicon.ico') {
     res.writeHead(204);
     res.end();
     return;
   }
 
-  // Seguridad: evita acceder fuera de la carpeta public
+  // Seguridad: evitar acceder fuera de la carpeta public
   if (fileUrl.includes('..')) {
     res.writeHead(400, { 'Content-Type': 'text/html' });
     res.end('Solicitud no válida');
@@ -50,5 +73,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`✅ Servidor corriendo en http://localhost:${port}`);
 });

@@ -1,87 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - Mi Empresa</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Estilos del popup de confirmación */
+    .popup-confirm {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s, transform 0.5s;
+      z-index: 9999;
+    }
+    .popup-confirm.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
   <header class="header" id="site-header">
     <div class="container">
-      <div class="logo"><a href="/"><img src="/img/logo.png" alt="Logo" /></a></div>
+      <div class="logo">
+        <a href="/"><img src="/img/logo.png" alt="Logo de Mi Empresa"></a>
+      </div>
       <nav class="nav">
         <a href="/">Inicio</a>
         <a href="/nosotros.html">Nosotros</a>
-        <a href="/servicios.html">Nuestros Servicios</a>
-        <a href="/clientes.html">Catálogo de Clientes</a>
-        <a href="/contacto.html">Contáctenos</a>
+        <a href="/servicios.html">Servicios</a>
+        <a href="/clientes.html">Clientes</a>
+        <a href="/contacto.html" class="active">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <main style="padding-top: 100px;">
-    <section class="section">
+  <main>
+    <section class="news-section">
       <div class="container">
-        <h2>Contáctenos</h2>
-        <form id="contactForm" class="form">
-          <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" required />
+        <h2 class="section-title">Envíanos un mensaje</h2>
+        <form action="/contacto" method="POST" id="formContacto" class="contact-form">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
 
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required />
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tunombre@email.com" required>
+          </div>
 
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 999 999 999">
+          </div>
 
-          <button type="submit">Enviar mensaje</button>
+          <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" placeholder="Motivo de tu consulta" required>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Enviar Mensaje</button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Mi Empresa.</p>
-  </footer>
+  <!-- Popup de confirmación -->
+  <div id="popupConfirm" class="popup-confirm">✅ Muy pronto nos pondremos en contacto</div>
 
   <script>
-    (function(){
-      const header = document.getElementById('site-header');
-      const onScroll = () => { if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-      document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("formContacto");
+      const popup = document.getElementById("popupConfirm");
 
-      // Enviar formulario con fetch
-      const form = document.getElementById('contactForm');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const data = {
-          nombre: form.nombre.value,
-          email: form.email.value,
-          mensaje: form.mensaje.value
-        };
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // evitar envío normal
 
-        fetch('/contact', {
+        // Mostrar popup
+        popup.classList.add("show");
+
+        // Ocultar popup después de 3 segundos
+        setTimeout(() => {
+          popup.classList.remove("show");
+        }, 3000);
+
+        // Limpiar formulario
+        form.reset();
+
+        // Aquí opcionalmente puedes enviar los datos al servidor con fetch/AJAX
+        fetch('/contacto', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: new FormData(form)
         })
-        .then(r => r.json())
-        .then(resp => {
-          if (resp.ok) {
-            // Redirigimos a confirmacion con el nombre en query string
-            const nombreEncoded = encodeURIComponent(data.nombre || '');
-            window.location.href = '/confirmacion.html?nombre=' + nombreEncoded;
-          } else {
-            alert('Ocurrió un error. Intente más tarde.');
-          }
-        })
-        .catch(() => {
-          alert('No se pudo enviar el mensaje. Revise su conexión.');
-        });
+        .then(res => console.log('Formulario enviado'))
+        .catch(err => console.error(err));
       });
-    })();
+    });
   </script>
 </body>
 </html>

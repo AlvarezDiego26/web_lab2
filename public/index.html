@@ -1,65 +1,136 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Inicio - Mi Empresa</title>
-  <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Inicio - Mi Empresa</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="header" id="site-header">
-    <div class="container">
-      <div class="logo">
-        <a href="/"><img src="/img/logo.png" alt="Logo" /></a>
-      </div>
-      <nav class="nav">
-        <a href="/">Inicio</a>
-        <a href="/nosotros.html">Nosotros</a>
-        <a href="/servicios.html">Nuestros Servicios</a>
-        <a href="/clientes.html">Catálogo de Clientes</a>
-        <a href="/contacto.html">Contáctenos</a>
-      </nav>
+
+    <header class="header" id="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="img/logo.png" alt="Logo de Mi Empresa" /></a>
+            </div>
+            <nav class="nav">
+                <a href="/">Inicio</a>
+                <a href="/nosotros.html">Nosotros</a>
+                <a href="/servicios.html">Nuestros Servicios</a>
+                <a href="/clientes.html">Catálogo de Clientes</a>
+                <a href="/contacto.html">Contáctenos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-carousel">
+                <img src="img/hero1.jpg" class="active" alt="Imagen 1 del carrusel de bienvenida">
+                <img src="img/hero2.jpg" alt="Imagen 2 del carrusel de bienvenida">
+                <img src="img/hero3.jpg" alt="Imagen 3 del carrusel de bienvenida">
+            </div>
+            <div class="overlay"></div>
+            <div class="inner">
+                <h1>Bienvenidos a Mi Empresa</h1>
+                <p>Soluciones profesionales a tu medida. Calidad, compromiso y experiencia.</p>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="container news-grid-container">
+
+                <h2 class="section-title">NOTICIAS TOP 40</h2>
+
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/greta-van-fleet.jpg" alt="Greta Van Fleet">
+                            <span class="category-tag category-music">MÚSICA</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Feels Like Gold será el próximo estreno de la Banda de Rock Greta Van Fleet</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/ozzy-osbourne.jpg" alt="Ozzy Osbourne">
+                            <span class="category-tag category-music">MÚSICA</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Ozzy Osbourne soñaba un planeta sin odio</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/benson-boone.jpg" alt="Benson Boone">
+                            <span class="category-tag category-music">MÚSICA</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Benson Boone deslumbra en el Mad Cool 2026</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/chelsea.jpg" alt="Equipo de Chelsea">
+                            <span class="category-tag category-sports">DEPORTES</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Chelsea se corona campeón del Mundial de Clubes 2025</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/alex-warren.jpg" alt="Alex Warren">
+                            <span class="category-tag category-music">MÚSICA</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Alex Warren en el #1 del Ranking Top 40 con el single "Ordinary"</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-image">
+                            <img src="img/card/maroon-5.jpg" alt="Maroon 5">
+                            <span class="category-tag category-music">MÚSICA</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Maroon 5 anuncia próximo álbum mientras ya suena el single Priceless</h3>
+                            <a href="#" class="read-more">Ver Más</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Mi Empresa. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="radio-player" id="radioBtn">
+        <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
     </div>
-  </header>
 
-  <main>
-  <section class="hero">
-    <div class="overlay"></div> <!-- capa oscura transparente -->
-    <div class="inner">
-      <h1>Bienvenidos a Mi Empresa</h1>
-      <p>Soluciones profesionales a tu medida. Calidad, compromiso y experiencia.</p>
-    </div>
-  </section>
+    <audio id="radioStream">
+        <source src="https://conectperu.com/8130/strean" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
 
-  <section class="section">
-    <div class="container">
-      <h2>¿Por qué elegirnos?</h2>
-      <p>Ofrecemos servicios personalizados con enfoque en resultados. Nuestro equipo está preparado para atender proyectos de distinta escala.</p>
-    </div>
-  </section>
-</main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Mi Empresa. Todos los derechos reservados.</p>
-  </footer>
-
-  <script>
-    // Header que cambia de fondo al hacer scroll
-    (function() {
-      const header = document.getElementById('site-header');
-      const onScroll = () => {
-        if (window.scrollY > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      };
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-
-      // año en el footer
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

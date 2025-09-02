@@ -1,145 +1,482 @@
-/* Reset básico */
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: Verdana, Geneva, sans-serif; }
+/* ====================
+   ESTILOS GLOBALES
+   ==================== */
 
-/* --- Header / Nav --- */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  background-color: transparent;
-  padding: 14px 24px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.header.scrolled {
-  background-color: rgba(0,0,0,0.6); /* fondo oscuro semi-transparente al hacer scroll */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+
+body {
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* logo */
-.logo {
-  display: flex;
-  align-items: center;
+/* ====================
+   HEADER
+   ==================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    background-color: transparent;
+    padding: 14px 24px;
 }
+
+.header.scrolled {
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .logo img {
-  height: 44px;
-  width: auto;
+    height: 44px;
 }
 
-/* nav principal */
 .nav {
-  display: flex;
-  gap: 18px;
-  align-items: center;
+    display: flex;
+    gap: 18px;
 }
+
 .nav a {
-  color: #fff;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  opacity: 0.95;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    opacity: 0.95;
 }
+
 .nav a:hover {
-  background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-/* Hero para la página principal */
+/* ====================
+   HERO CON CARRUSEL
+   ==================== */
+
 .hero {
-  position: relative;
-  height: 100vh; /* ocupa toda la pantalla */
-  background: url("/img/hero.jpg") no-repeat center center/cover; /* tu imagen de fondo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  padding: 0 20px;
+    position: relative;
+    height: 900px; /* Altura fija para el carrusel */
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero .inner {
-  max-width: 900px;
-  margin-left: 40px;
+.hero-carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.5s ease, transform 8s ease;
+}
+
+.hero-carousel img.active {
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 1;
 }
 
 .hero .overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
 }
 
-/* texto */
 .hero .inner {
-  position: relative;
-  z-index: 2; /* queda encima de la capa oscura */
-  max-width: 800px;
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
 }
+
 .hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
+    font-size: 48px;
+    margin-bottom: 20px;
 }
+
 .hero p {
-  font-size: 20px;
+    font-size: 20px;
 }
 
+/* ====================
+   SECCIÓN DE NOTICIAS
+   ==================== */
 
-/* Contenido secciones */
-.section {
-  padding: 80px 20px;
-}
-.section h2 {
-  font-size: 28px;
-  margin-bottom: 12px;
-  color: #222;
+.news-section {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 60px 0;
 }
 
-/* Footer simple */
+.news-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* --- Estilos para cada tarjeta de noticia --- */
+.news-card {
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    position: relative;
+    width: 100%; /* Ocupa todo el ancho disponible del grid */
+    height: 200px; /* Altura fija para el contenedor */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%; /* La imagen se ajusta al 100% del ancho del contenedor */
+    height: 100%; /* La imagen se ajusta al 100% de la altura del contenedor */
+    object-fit: cover; /* Recorta la imagen para que cubra el espacio sin distorsionarse */
+    display: block;
+}
+
+/* Estilos para las etiquetas de categoría */
+.category-tag {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.category-music {
+    background-color: #ff5722;
+}
+
+.category-sports {
+    background-color: #007bff;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 1.25rem;
+    margin: 0 0 10px 0;
+}
+
+.read-more {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* ====================
+   FOOTER
+   ==================== */
+
 .footer {
-  background: #111;
-  color: #ddd;
-  padding: 24px 20px;
+    background: #111;
+    color: #ddd;
+    padding: 24px 20px;
+    text-align: center;
+}
+
+/* ====================
+   RADIO PLAYER FLOTANTE
+   ==================== */
+
+.radio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1976d2;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 9999;
+}
+
+.radio-player:hover {
+    background: #1565c0;
+    transform: scale(1.1);
+}
+
+.radio-player svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+
+/* ====================
+   RESPONSIVE
+   ==================== */
+
+@media (max-width: 800px) {
+    .nav {
+        display: none;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .hero p {
+        font-size: 16px;
+    }
+}
+
+/* ====================
+   FORMULARIO DE CONTACTO
+   ==================== */
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1px solid #1976d2;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+.btn-submit {
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 18px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+/* Estilos del formulario */
+.contact-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 0.9rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #0056b3;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 1rem;
   text-align: center;
 }
 
-/* Formulario de contacto básico */
-.form {
-  max-width: 700px;
-  margin: 0 auto;
-}
-.form label { display:block; margin:10px 0 6px; color:#333; font-weight:600; }
-.form input[type="text"],
-.form input[type="email"],
-.form textarea {
-  width:100%;
-  padding:10px 12px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:14px;
-}
-.form button {
-  margin-top:12px;
-  padding:10px 16px;
-  border: none;
-  border-radius:8px;
-  cursor:pointer;
-  background: #0077cc;
-  color: #fff;
-  font-weight:700;
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-/* Responsive */
-@media (max-width: 800px) {
-  .nav { display: none; } /* simple: no mostramos menú en móvil (puedes añadir hamburguesa) */
-  .hero .inner { margin-left: 16px; }
+.form-section {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-section h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background: #007BFF;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.confirmacion {
+  text-align: center;
+  margin: 3rem;
+}
+
+.confirmacion h2 {
+  color: green;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.7rem 1.5rem;
+  background: #007BFF;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
 }
