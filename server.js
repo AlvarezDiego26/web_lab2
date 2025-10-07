@@ -1,9 +1,11 @@
+require('dotenv').config();  // Carga variables de entorno del archivo .env
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
 
-const port = 4000;
+const port = process.env.PORT || 4000;  // Usa el puerto de Render o 4000 localmente
 
 const mimeTypes = {
   '.html': 'text/html',
@@ -18,7 +20,6 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   console.log(`Solicitud recibida para: ${req.url}`);
 
-  // Manejar POST del formulario
   if (req.method === 'POST' && req.url === '/contacto') {
     let body = '';
 
@@ -32,7 +33,6 @@ const server = http.createServer((req, res) => {
       console.log('📩 Nuevo mensaje recibido:');
       console.log(formData);
 
-      // Redirige a la página de confirmación
       res.writeHead(302, { 'Location': '/confirmacion.html' });
       res.end();
     });
@@ -40,17 +40,14 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Redirigir '/' a '/index.html'
   let fileUrl = req.url === '/' ? '/index.html' : req.url;
 
-  // Evitar favicon.ico
   if (fileUrl === '/favicon.ico') {
     res.writeHead(204);
     res.end();
     return;
   }
 
-  // Seguridad: evitar acceder fuera de la carpeta public
   if (fileUrl.includes('..')) {
     res.writeHead(400, { 'Content-Type': 'text/html' });
     res.end('Solicitud no válida');
